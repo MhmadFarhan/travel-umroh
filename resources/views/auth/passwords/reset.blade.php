@@ -7,11 +7,11 @@
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
-            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="token" value="{{ $token }}"> {{-- Variabel $token datang dari URL --}}
 
             <div class="input-group mb-3">
                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                       placeholder="Email" required autofocus>
+                       placeholder="Email" required autofocus value="{{ $email ?? old('email') }}"> {{-- Variabel $email datang dari URL --}}
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -19,8 +19,8 @@
                 </div>
                 @error('email')
                 <span class="error invalid-feedback">
-                                {{ $message }}
-                            </span>
+                    {{ $message }}
+                </span>
                 @enderror
             </div>
 
@@ -59,7 +59,6 @@
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-block">{{ __('Reset Password') }}</button>
                 </div>
-                <!-- /.col -->
             </div>
         </form>
     </div>

@@ -28,23 +28,36 @@
           </h2>
 
           <div class="popular__all">
-            @foreach($travel_packages as $travel_package)
-                <article class="popular__card">
-                <a href="{{ route('travel_package.show', $travel_package->slug) }}">
-                    <img
-                    src="{{ Storage::url($travel_package->galleries->first()->images) }}"
-                    alt=""
-                    class="popular__img"
-                    />
-                    <div class="popular__data">
-                    <h2 class="popular__price">Rp {{ number_format($travel_package->price, 0, ',', '.') }}</h2>
-                    <h3 class="popular__description">{{ $travel_package->type }}</h3>
-                    <p class="popular__title">{{ preg_replace('/-\d+$/', '', $travel_package->location) }}</p>
+          @foreach($travel_packages as $travel_package)
+        <article class="popular__card">
+            <a href="{{ route('travel_package.show', $travel_package->slug) }}" class="popular__card-link">
+                <div class="card-content">
+                    <div class="card-image-wrapper">
+                        <img src="{{ Storage::url($travel_package->galleries->first()->images) }}" alt="{{ $travel_package->type ?? 'Paket Umroh' }}" class="popular__img" />
+                        <h2 class="popular__price">
+                            Rp {{ number_format($travel_package->price ?? 0, 0, ',', '.') }}/pax
+                        </h2>
                     </div>
-                </a>
-                </article>
-            @endforeach
-          </div>
+
+                    <div class="popular__data">
+                        <h3 class="popular__title">
+                            {{ $travel_package->type ?? 'Nama Paket Umroh' }}
+                        </h3>
+                        <p class="popular__description">
+                            {{ $travel_package->location ?? $travel_package->description ?? 'Deskripsi singkat paket' }}
+                        </p>
+
+                        <div class="popular__button-wrapper">
+                            <button class="popular__button">
+                                Lihat Detail
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </article>
+    @endforeach
+</div>
         </div>
       </section>
 @endsection

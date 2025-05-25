@@ -425,6 +425,14 @@ body.dark-theme {
     padding: 1rem 0 5rem;
 }
 
+.popular__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr); /* 2 baris tetap */
+    gap: 1.5rem;
+    min-height: 550px; /* Sesuaikan dengan kebutuhan */
+}
+
 .popular__card {
     width: 100%;
     max-width: 290px;
@@ -446,14 +454,50 @@ body.dark-theme {
     gap: 2rem;
 }
 
-@media screen and (min-width: 768px) {
-    .popular__all {
-        -ms-grid-columns: (1fr) [3];
-        grid-template-columns: repeat(3, 1fr);
+@media (max-width: 576px) {
+    .popular__grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
-}
 
+    .popular__card {
+        max-width: 100%;
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+    .popular__img {
+        height: 200px !important; /* Tinggi lebih besar di mobile */
+        width: 100%;
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
+        object-position: center; /* Pastikan gambar terpusat */
+    }
+
+    .popular__data {
+        padding: 0 0.5rem 1rem;
+    }
+
+    /* Perbaikan swiper untuk mobile */
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 36px;
+        height: 36px;
+        bottom: 10px;
+    }
+    
+    .swiper-button-prev {
+        left: 40%;
+    }
+    
+    .swiper-button-next {
+        right: 40%;
+    }
+
+}
 .popular__img {
+    width: 100%;
+    height: 180px;
     border-radius: 1rem;
     margin-bottom: 1rem;
 }
@@ -475,10 +519,12 @@ body.dark-theme {
 .popular__title {
     font-size: 1rem;
     margin-bottom: 0.75rem;
+    color: #1F2937;
 }
 
 .popular__description {
-    font-size: 0.813rem;
+    font-size: 0.856rem;
+    color: #6B7280;
 }
 
 .popular__card:hover {
@@ -512,6 +558,27 @@ body.dark-theme {
 
 .swiper-button-next {
     right: calc(50% - 3rem);
+}
+.popular__button-wrapper {
+    margin-top: auto; /* Mendorong wrapper tombol ke bagian bawah container flex */
+    padding-top: 1rem; /* Memberi sedikit ruang antara deskripsi dan tombol */
+}
+
+/* Tombol "Lihat Detail" */
+.popular__button {
+    width: 100%; /* Lebar penuh */
+    background-color: #003f91; /* Warna ungu */
+    color: white;
+    font-weight: 600; /* Semi-bold */
+    padding: 0.75rem 1rem; /* 12px atas/bawah, 16px kiri/kanan */
+    border-radius: 0.5rem; /* 8px */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transisi halus saat hover */
+}
+
+.popular__button:hover {
+    background-color: var(--first-color-alt); /* Warna ungu sedikit lebih gelap saat hover */
 }
 
 /*=============== VALUE ===============*/
@@ -750,6 +817,7 @@ body.dark-theme {
 }
 
 /*=============== FOOTER ===============*/
+/* ---- Footer ---- */
 .footer__container {
     row-gap: 2.5rem;
 }
@@ -772,31 +840,65 @@ body.dark-theme {
     color: var(--second-color);
 }
 
+/* Menggabungkan footer__description, footer__link, dan footer__address karena mereka memiliki properti dasar yang sama */
+/* Tambahkan word-wrap untuk memastikan teks panjang membungkus */
 .footer__description,
-.footer__link {
-    font-size: 0.813rem;
+.footer__link,
+.footer__address { /* Ditambahkan ke sini */
+    font-size: 0.813rem; /* ini setara dengan 13px */
     font-weight: 500;
+    word-wrap: break-word; /* Penting! Memastikan teks panjang memecah kata */
+    overflow-wrap: break-word; /* Alternatif/kompatibilitas */
 }
 
-.footer__content,
-.footer__links {
-    display: -ms-grid;
-    display: grid;
+/* Gaya spesifik untuk deskripsi dan alamat */
+.footer__description,
+.footer__address {
+    font-size: 0.813rem;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    max-width: 200px; /* Coba naikkan sedikit jika memungkinkan, sesuaikan */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 10; /* Coba 4 baris agar lebih banyak teks terlihat */
+    -webkit-box-orient: vertical;
+    color: var(--text-color); /* Pastikan warna teksnya sama */
 }
 
 .footer__content {
-    -ms-grid-columns: (max-content) [2];
-    grid-template-columns: repeat(2, -webkit-max-content);
-    grid-template-columns: repeat(2, max-content);
-    gap: 2.5rem 4rem;
+    display: grid;
+    /* Ganti ke nilai yang memungkinkan kolom lebih lebar dan responsif */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Coba minwidth 250px */
+    gap: 2.5rem; /* Jarak antar kolom */
+    padding-bottom: 3rem;
+    max-width: 1200px; /* Batasi lebar total footer */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
+
+.footer__content > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Pastikan konten rata kiri */
+    text-align: left; /* Pastikan teks rata kiri */
+}
+
 
 .footer__title {
     font-size: 1rem;
     margin-bottom: 1rem;
+    text-align: left;
+    width: 100%;
 }
 
 .footer__links {
+    display: flex;
+    flex-direction: column;
     row-gap: 0.5rem;
 }
 
@@ -860,6 +962,20 @@ body.dark-theme {
     justify-content: center;
     -webkit-column-gap: 1.25rem;
     column-gap: 1.25rem;
+}
+
+/* --- Media Queries --- */
+@media screen and (min-width: 768px) {
+    .footer__content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .footer__info {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--text-color-light);
+    }
 }
 
 /*=============== SCROLL BAR ===============*/
@@ -1299,6 +1415,126 @@ body.dark-theme {
     .content__container {
         -ms-grid-columns: 1.5fr 0.5fr;
         grid-template-columns: 1.5fr 0.5fr;
+    }
+}
+
+/*=============== GALLERY BLOG SWIPER STYLES (ADDED & UPDATED) ===============*/
+.gallery-swiper-wrapper-outer {
+    position: relative; /* Penting: Ini akan menjadi acuan untuk posisi absolute tombol */
+    width: 100%; /* Ubah ini ke 100% untuk fleksibilitas */
+    max-width: 900px; /* Sesuaikan dengan lebar maksimal gambar Anda */
+    margin: 0 auto; /* Pusatkan wrapper */
+    /* Padding dihapus dari sini, karena kita akan mengatur lebar swiper itu sendiri */
+}
+
+/* Kontainer utama Swiper */
+.gallerySwiper {
+    /* Lebar konten gambar akan 100% dikurangi ruang untuk tombol di kedua sisi */
+    width: calc(100% - 100px); /* Contoh: Kurangi lebar 50px kiri + 50px kanan untuk tombol */
+    max-width: 900px; /* Pastikan tidak melebihi lebar maksimum wrapper outer */
+    margin: 0 auto; /* Pusatkan swiper di dalam wrapper outer */
+    height: auto;
+    overflow: hidden; /* Pertahankan ini agar gambar tidak meluber keluar */
+    padding: 0; /* Pastikan tidak ada padding yang mendorong gambar */
+}
+
+/* Styling untuk gambar di dalam Swiper Slide */
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 400px; /* TENTUKAN TINGGI TETAP untuk slide - SESUAIKAN INI! */
+    object-fit: contain; /* 'contain' agar gambar penuh terlihat. Gunakan 'cover' jika ingin mengisi penuh dan memotong. */
+}
+
+/* Styling untuk tombol navigasi Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #ffffff;
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 44px; 
+    height: 44px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 10; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%); /* Geser ke atas 50% dari tingginya sendiri untuk senter yang sempurna */
+}
+
+/* PENTING UNTUK IKON: Pastikan ini tidak ditimpa oleh CSS lain */
+/* Ini adalah properti yang diberikan Swiper.js untuk menampilkan ikon panah */
+.swiper-button-next::after {
+    content: 'next'; /* String 'next' adalah kode karakter ikon panah kanan di font Swiper-icons */
+    font-family: 'swiper-icons'; /* Font family yang digunakan Swiper.js untuk ikon */
+    font-size: 1.5rem; /* Ukuran ikon panah */
+    text-transform: none !important; /* Penting: Hindari text-transform yang tidak diinginkan */
+    letter-spacing: 0; /* Pastikan tidak ada jarak antar huruf yang aneh */
+    font-variant: initial;
+    line-height: 1;
+}
+
+.swiper-button-prev::after {
+    content: 'prev'; /* String 'prev' adalah kode karakter ikon panah kiri di font Swiper-icons */
+    font-family: 'swiper-icons'; /* Font family yang digunakan Swiper.js untuk ikon */
+    font-size: 1.5rem;
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Perubahan warna saat di hover */
+}
+
+/* Posisi spesifik untuk tombol Next dan Prev di luar gambar */
+.swiper-button-next {
+    right: 0px;
+}
+
+.swiper-button-prev {
+    left: 0px;
+}
+
+/* Styling untuk pagination (titik-titik di bawah) */
+.swiper-pagination {
+    position: absolute; 
+    bottom: 10px; 
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10; 
+}
+
+.swiper-pagination-bullet {
+    background-color: #ffffff;
+    opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--first-color);
+    opacity: 1;
+}
+
+/* Media Queries untuk Responsif Swiper */
+@media screen and (max-width: 767px) {
+    .gallery-swiper-wrapper-outer {
+        width: 100%;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 36px; 
+        height: 36px;
+    }
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 1.2rem;
     }
 }
 

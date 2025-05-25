@@ -8,7 +8,7 @@
             <!--========== FEATURE 1 ==========-->
             <section class="feature swiper-slide">
               <img
-                src="{{ asset('frontend/assets/img/contact-hero.jpg') }}"
+                src="{{ asset('frontend/assets/img/contact-hero2.jpg') }}"
                 alt=""
                 class="feature__bg"
               />
@@ -31,7 +31,7 @@
             <div class="contact__orbe"></div>
 
             <div class="contact__img">
-              <img src="{{ asset('frontend/assets/img/contact.jpg') }}" alt="" />
+              <img src="{{ asset('frontend/assets/img/contact2.jpg') }}" alt="" />
             </div>
           </div>
 

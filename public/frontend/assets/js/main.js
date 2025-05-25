@@ -15,11 +15,11 @@ const swiperPopular = new Swiper(".popular__container", {
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
-    loop: true,
-    autoplay: {
-        delay: 3500, // waktu antar slide (ms)
-        disableOnInteraction: false, // tetap auto meski user klik/geser
-    },
+    // loop: true,
+    // autoplay: {
+    //     delay: 3500, // waktu antar slide (ms)
+    //     disableOnInteraction: false, // tetap auto meski user klik/geser
+    // },
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",

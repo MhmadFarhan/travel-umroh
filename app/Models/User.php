@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\VerifyEmailCustom;
+use App\Notifications\CustomResetPasswordNotification; // <-- Pastikan ini ada
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,5 +51,17 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmailCustom);
+    }
+
+    /**
+     * Kirim notifikasi reset password dengan template custom.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        // Baris ini akan memanggil notifikasi kustom kamu
+        $this->notify(new CustomResetPasswordNotification($token));
     }
 }

@@ -106,67 +106,56 @@
             </div>
 
             <div class="footer__content">
-                <div>
-                    <h3 class="footer__title">About</h3>
+            <div>
+            <h3 class="footer__title">About</h3>
+            <p class="footer__description">
+                Haromain Travel adalah penyedia layanan terpercaya dalam bidang perjalanan Ibadah Haji dan Umrah,<br>
+                berkomitmen untuk memberikan pengalaman ibadah yang nyaman, aman, dan berkesan bagi para jamaah.
+            </p>
+            <ul class="footer__links">
+            <li>
+                <a href="/blogs" class="footer__link">News & Blog</a>
+                </li>
+            </ul>
+        </div>
 
-                    <ul class="footer__links">
-                        <!-- <li>
-                                <a href="#" class="footer__link">About Us</a>
-                            </li>
-                            <li>
-                                <a href="#" class="footer__link">Features </a>
-                            </li> -->
-                        <li>
-                            <a href="#" class="footer__link">News & Blog</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="footer__title">Company</h3>
+        <div>
+            <h3 class="footer__title">Company</h3>
+            <p class="footer__address">
+                Jl.ParungJaya no 56 B, RT.01/RW0.1 Kel. Parung Jaya, <br>
+                Kec. Karang Tengah Kota Tangerang (15159) <br>
+                (Samping Apartemen Metro Garden)
+            </p>
+            <!-- <ul class="footer__links">
+                <li>
+                    <a href="#" class="footer__link">How We Work?</a>
+                </li>
+            </ul> -->
+        </div>
 
-                    <ul class="footer__links">
-                        <li>
-                            <a href="#" class="footer__link">How We Work?
-                            </a>
-                            <!-- </li>
-                            <li>
-                                <a href="#" class="footer__link">Capital </a>
-                            </li>
-                            <li>
-                                <a href="#" class="footer__link"> Security</a>
-                            </li> -->
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="footer__title">Support</h3>
-
-                    <ul class="footer__links">
-                        <!-- <li>
-                                <a href="#" class="footer__link">FAQs </a>
-                            </li>
-                            <li>
-                                <a href="#" class="footer__link"
-                                    >Support center
-                                </a>
-                            </li> -->
-                        <li>
-                            <a href="#" class="footer__link"> Contact Us</a>
-                        </li>
-                    </ul>
-                </div>
+        <div>
+                <h3 class="footer__title">Support</h3>
+                <p class="footer__deskription">
+                hubungi kami <br>
+                di bawah ini</p>
+                <ul class="footer__links">
+                    <li>
+                        <a href="/contact" class="footer__link">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
                 <div>
                     <h3 class="footer__title">Follow us</h3>
 
                     <ul class="footer__social">
-                        <a href="#" class="footer__social-link">
-                            <i class="bx bxl-facebook-circle"></i>
-                        </a>
-                        <a href="#" class="footer__social-link">
-                            <i class="bx bxl-instagram-alt"></i>
-                        </a>
-                        <a href="#" class="footer__social-link">
+                    <a href="https://www.facebook.com/share/1AS7yvu9d9/?mibextid=wwXIfr" target="_blank" class="footer__social-link">
+                <i class="bx bxl-facebook-circle"></i>
+            </a>
+            <a href="https://www.instagram.com/haromaintravel?igsh=MWNtM2tneXBxNnZtbQ==" target="_blank" class="footer__social-link">
+                <i class="bx bxl-instagram-alt"></i>
+                        <!-- <a href="#" class="footer__social-link">
                             <i class="bx bxl-pinterest"></i>
-                        </a>
+                        </a> -->
                     </ul>
                 </div>
             </div>
