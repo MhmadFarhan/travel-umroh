@@ -121,60 +121,139 @@
 @endsection
 
 @push('style-alt')
-    <style>
-        blockquote {
-            border-left: 8px solid #b4b4b4;
-            padding-left: 1rem;
-        }
-        .blog__detail ul li {
-            list-style: initial;
-        }
+<style>
+    blockquote {
+        border-left: 8px solid #b4b4b4;
+        padding-left: 1rem;
+    }
+    .blog__detail ul li {
+        list-style: initial;
+    }
 
-        /* Styles for Swiper gallery */
-        .gallery-blog {
-            padding-bottom: 3rem;
-        }
+    /* --- Gaya Spesifik untuk Galeri Swiper Blog --- */
 
-        .gallerySwiper {
-            width: 100%;
-            height: auto;
-        }
+    /* Kontainer utama bagian galeri blog */
+    .gallery-blog {
+        padding-bottom: 3rem; /* Memberi sedikit ruang di bawah galeri */
+    }
 
-        .gallerySwiper .swiper-slide {
-            text-align: center;
-            background: #fff;
+    /* Kontainer Swiper itu sendiri */
+    .gallerySwiper {
+        width: 100%; /* Lebar penuh dari kontainer induknya */
+        height: auto; /* Tinggi disesuaikan dengan konten */
+        position: relative; /* Penting untuk penempatan tombol navigasi absolut */
+        overflow: hidden; /* Pastikan tidak ada konten yang meluap */
+        border-radius: 8px; /* Sudut sedikit membulat untuk estetika */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Tambahkan sedikit bayangan */
+    }
 
-            /* Center slide text vertically */
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            -webkit-justify-content: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            -webkit-align-items: center;
-            align-items: center;
-        }
+    /* Setiap slide di dalam Swiper */
+    .gallerySwiper .swiper-slide {
+        text-align: center;
+        background: #fff;
 
-        .gallerySwiper .swiper-slide img {
-            display: block;
-            width: 100%;
-            height: auto;
-            object-fit: cover; /* To maintain aspect ratio */
-        }
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        /* Properti tinggi gambar yang sudah Anda miliki (height: auto;) */
+    }
 
+    /* Gambar di dalam setiap slide */
+    .gallerySwiper .swiper-slide img {
+        display: block;
+        width: 100%;
+        /* Properti tinggi dan object-fit gambar yang sudah Anda miliki */
+        height: auto;
+        object-fit: cover; /* To maintain aspect ratio */
+    }
+
+    /* Gaya untuk tombol navigasi Swiper (Next/Prev) */
+    .gallerySwiper .swiper-button-next,
+    .gallerySwiper .swiper-button-prev {
+        color: var(--first-color, #007bff); /* Warna sesuai tema Anda, default biru */
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.7); /* Background putih transparan */
+        border-radius: 50%; /* Bentuk lingkaran */
+        transition: background-color 0.3s ease; /* Transisi halus saat hover */
+        z-index: 10; /* Pastikan di atas gambar */
+
+        /* Mengatur posisi vertikal di tengah */
+        top: 50%; /* Pindahkan ke tengah vertikal */
+        transform: translateY(-50%); /* Geser ke atas 50% dari tinggi elemennya sendiri */
+        margin-top: 0; /* Override margin-top default dari Swiper jika ada */
+    }
+
+    .gallerySwiper .swiper-button-next:hover,
+    .gallerySwiper .swiper-button-prev:hover {
+        background-color: rgba(255, 255, 255, 1); /* Lebih solid saat di-hover */
+    }
+
+    /* Ikon panah di dalam tombol */
+    .gallerySwiper .swiper-button-next::after,
+    .gallerySwiper .swiper-button-prev::after {
+        font-size: 1.5rem; /* Ukuran ikon panah */
+    }
+
+    /* Penempatan tombol */
+    .gallerySwiper .swiper-button-prev {
+        left: 10px; /* Jarak dari kiri */
+    }
+
+    .gallerySwiper .swiper-button-next {
+        right: 10px; /* Jarak dari kanan */
+    }
+
+    /* Gaya untuk pagination (titik-titik di bawah slider) */
+    .gallerySwiper .swiper-pagination {
+        position: absolute;
+        bottom: 10px; /* Jarak dari bawah slider */
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 10; /* Pastikan di atas gambar */
+    }
+
+    /* Titik pagination individual */
+    .gallerySwiper .swiper-pagination-bullet {
+        background: rgba(0, 0, 0, 0.5); /* Warna default titik */
+        opacity: 0.8; /* Transparansi default */
+        width: 8px; /* Ukuran titik */
+        height: 8px; /* Ukuran titik */
+        margin: 0 4px; /* Jarak antar titik */
+        transition: background-color 0.3s ease, opacity 0.3s ease; /* Transisi halus */
+    }
+
+    /* Titik pagination aktif */
+    .gallerySwiper .swiper-pagination-bullet-active {
+        background: var(--first-color, #007bff); /* Warna aktif sesuai tema Anda */
+        opacity: 1; /* Tidak transparan saat aktif */
+    }
+
+    /* Media queries untuk responsivitas (opsional, sesuaikan) */
+    @media screen and (max-width: 768px) {
         .gallerySwiper .swiper-button-next,
         .gallerySwiper .swiper-button-prev {
-            color: var(--first-color);
+            width: 30px;
+            height: 30px;
         }
-
-        .gallerySwiper .swiper-pagination-bullet-active {
-            background: var(--first-color);
+        .gallerySwiper .swiper-button-next::after,
+        .gallerySwiper .swiper-button-prev::after {
+            font-size: 1.2rem;
         }
-    </style>
+    }
+</style>
 @endpush
 
 @push('script-alt')
